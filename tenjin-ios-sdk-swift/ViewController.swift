@@ -12,11 +12,9 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        TenjinSDK.init("YOUR API KE")
+        TenjinSDK.init("YOUR TENJIN API KEY")
         TenjinSDK.connect();
-        
-        TenjinSDK.
-        
+                
         // Do any additional setup after loading the view, typically from a nib.
     }
 
