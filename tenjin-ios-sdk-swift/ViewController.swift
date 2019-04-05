@@ -12,9 +12,8 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        TenjinSDK.init("YWZKFWDZEREQCFMF3DST3AYHZPCC9MWV")
+        TenjinSDK.getInstance("YOUR_TENJIN_API_KEY")
         TenjinSDK.connect()
-                
         // Do any additional setup after loading the view, typically from a nib.
     }
 
