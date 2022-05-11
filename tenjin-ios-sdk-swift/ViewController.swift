@@ -7,13 +7,13 @@
 //
 
 import UIKit
+import AppTrackingTransparency
+import AdSupport
 
 class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        TenjinSDK.getInstance("YOUR_TENJIN_API_KEY")
-        TenjinSDK.connect()
         // Do any additional setup after loading the view, typically from a nib.
     }
 
@@ -22,6 +22,37 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
-
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        // In
+        TenjinSDK.getInstance("YWZKFWDZEREQCFMF3DST3AYHZPCC9MWV")
+        TenjinSDK.appendAppSubversion(6789)
+        if #available(iOS 14, *) {
+            // Displaying an ATT permission prompt
+            ATTrackingManager.requestTrackingAuthorization { (status) in
+                switch status {
+                case .authorized:
+                    print("Authorized")
+                    print("Granted consent")
+                    // Tenjin initialization with ATTrackingManager
+                    TenjinSDK.connect()
+                case .denied:
+                    print("Denied")
+                    print("Denied consent")
+                case .notDetermined:
+                    print("Not Determined")
+                    print("Unknown consent")
+                case .restricted:
+                    print("Restricted")
+                    print("Device has an MDM solution applied")
+                @unknown default:
+                    print("Unknown")
+                
+                }
+            }
+        } else {
+            TenjinSDK.connect()
+        }
+    }
 }
 
